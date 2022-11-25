@@ -1,0 +1,53 @@
+.degrade{
+    background: linear-gradient(to right,rgb(68, 68, 255), rgb(29, 0, 190));
+}
+
+.center{
+    text-align: center;
+}
+
+.centrePage{
+    margin-left: 45%;
+}
+
+.buttons{
+    margin-top: 4%;
+    margin-left: 1%;
+    float: right;
+}
+
+.right{
+    float: right;
+    margin-bottom: 1%;
+}
+
+.B{
+    color: aliceblue;
+}
+
+.nav{
+    margin-left: 1%;
+}
+
+.red{
+    background-color: red;
+    color: white;
+    margin-right: 2%;
+}
+
+.hide{
+    display: none;
+}
+
+.unhide{
+    display:block;
+}
+
+.tab{
+    text-align: center;
+    margin-top: 0.5%;
+}
+
+.round{
+    border-radius: 50%;
+}
