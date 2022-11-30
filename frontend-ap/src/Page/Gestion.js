@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 
 function Gestion() {
+    /* declaration of variable for Hide and unhide */
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
@@ -29,6 +30,7 @@ function Gestion() {
     const [showErr, setShowErr] = useState(false);
     const handleCloseErr = () => setShowErr(false);
 
+    /* Stockage Variable */
     const [dataCat,setdataCat] = useState([{'idCat': 0, 'Nom':'Empty'}]);
     const [dataFour,setdataFour] = useState([{'idFour': 0, 'Nom':'Empty'}]);
 
@@ -36,6 +38,7 @@ function Gestion() {
     const [selectData,setselectData] = useState([]);
 
     function getElemTab(){
+        /* Gets all the dishes available */
         fetch('http://localhost:3001/plat',{
             method: 'GET',
             headers: {'Content-type': 'application/json'},
@@ -59,6 +62,7 @@ function Gestion() {
     }
 
     function affich(x) {
+        /* When a dishes is selected show the delete button */
         if(0<selectData.length || x===1){
             unhiden();
         }
@@ -68,6 +72,7 @@ function Gestion() {
     }
 
     function handleChange(selectValue){
+        /* Handle wich dishes is selected */
         if(selectData.length>0){
             let temp = selectData;
             if((temp).includes(selectValue.target.id)){
@@ -86,6 +91,7 @@ function Gestion() {
     }
 
     function handleUpdate(data){
+        /* Handle update on already existing dishes */
         data.preventDefault();
         if(data.target[3].value !== '' && data.target[0].value !== '' && data.target[1].value !== '' && data.target[2].value !== '' ){
             fetch('http://localhost:3001/plat',{ 
@@ -100,6 +106,7 @@ function Gestion() {
                 })
             }).then(val => val.json())
             .then(res => {
+                /* Refresh the display and hide unhide the appropriate modal */
                 getElemTab();
                 setShowInfo(false);
                 setShowUpdate(true);
@@ -113,6 +120,7 @@ function Gestion() {
     }
 
     function getCatego(){
+        /* Gets all Catégories */
         fetch('http://localhost:3001/plat/Categorie',{
             method: 'GET',
             headers: {'Content-type': 'application/json'},
@@ -122,6 +130,7 @@ function Gestion() {
     }
 
     function getFourni(){
+        /* Gets all fournisseur */
         fetch('http://localhost:3001/plat/Fournisseur',{
             method: 'GET',
             headers: {'Content-type': 'application/json'},
@@ -131,12 +140,14 @@ function Gestion() {
     }
 
     useEffect(() => {
+        /* Onload */
         getCatego();
         getFourni();
           // eslint-disable-next-line
     },[])
 
     function handleSubmit(data){
+        /* Handle new dish addition */
         data.preventDefault();
         if(data.target[3].value !== '' && data.target[0].value !== '' && data.target[1].value !== '' && data.target[2].value !== '' ){
             fetch('http://localhost:3001/plat',{ 
@@ -150,6 +161,7 @@ function Gestion() {
                 })
             }).then(val => val.json())
             .then(res => {
+                 /* Refresh the display and hide unhide the appropriate modal */
                 setShow(false);
                 setShowAdd(true);
                 getElemTab();
@@ -161,6 +173,7 @@ function Gestion() {
         else setShowErr(true);
     }
     function delPlat(){
+        /* Handle deletion of dish */
         fetch("http://localhost:3001/plat", {
             method: 'DELETE',
             headers: {'Content-type': 'application/json'},
@@ -168,6 +181,7 @@ function Gestion() {
         })
         .then(res => res.json())
         .then(function(){
+             /* Refresh the display and hide unhide the appropriate modal */
             setShowDelOk(false);
             setShowDel(true);
             getElemTab();
