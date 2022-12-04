@@ -1,6 +1,6 @@
 const config = {
     db: {
-      host: "sql7.freemysqlhosting.net",
+      host: "db4free.net",
       user: "sql7580109",
       password: "9CsleWDjtX",
       database: "sql7580109",
